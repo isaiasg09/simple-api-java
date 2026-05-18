@@ -9,13 +9,19 @@ jobs:
   job2-gitstatus:
     runs-on: ubuntu-latest
     steps:
-      - name: Step 1 - Git Status
+      - name: Step 1 - Checkout
+        uses: actions/checkout@v4
+
+      - name: Step 2 - Marcar o diretório como seguro
+        run: git config --global --add safe.directory ${{ github.workspace }}
+
+      - name: Step 3 - Git Status
         run: |
           git status
-          
-      - name: Step 2 - Imprimir mensagem
+
+      - name: Step 4 - Imprimir mensagem
         run: echo "Tudo certo!"
-  
+
   job3-goodbye:
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +29,6 @@ jobs:
         run: |
           echo "Uma nova instrução"
           ls
-          
+
       - name: Step 2 - Imprimir mensagem
         run: echo "Até logo!"
